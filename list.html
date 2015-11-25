@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4 sidebar categories">
+            <h2>Categories</h2>
+            <ul>
+                <li>Web</li>
+                <li>UX</li>
+                <li>iOS</li>
+                <li>Android</li>
+                <li>Cloud</li>
+            </ul>
+        </div>
+        <div class="col-sm-8 sessions">
+            <h2>Sessions</h2>
+            <section id="main">
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- Templates -->
+<script type="text/template" id="item-template">
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Organizer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% _.each(session, function(session) { %>
+        <tr>
+            <td><%= session.get('title') %></td>
+            <td><%= session.get('category') %></td>
+            <td><%= session.get('organizer') %></td>
+            <td>
+                <button>Sign Up</button>
+            </td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</script>
+
+<script type="text/template" id="input-template">
+    <form>
+
+</script>
+
+<!---->
+
+<!--=====================-->
+<!--Libraries-->
+<!--=====================-->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<link rel="stylesheet" href="categories.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"
+        type="text/javascript"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js" type="text/javascript"></script>
+<script sr="https://cdnjs.cloudflare.com/ajax/libs/json2/20150503/json2.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js" type="text/javascript"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min.js"
+        type="text/javascript"></script>
+
+<!--=====================-->
+
+
+<script type="text/javascript">
+    (function ($) {
+
+        <!--=====================-->
+        <!-- Models -->
+        <!--=====================-->
+
+        var Session = Backbone.Model.extend({
+            defaults: {
+                title: '',
+                category: '',
+                organizer: ''
+
+
+
+                /*
+                 description: '',
+                 time: '',
+                 location: ''
+                 */
+            }
+        });
+
+        var session1 = new Session({title: '1', category: 'web', organizer: 'GNK'});
+        var session2 = new Session({title: '2', category: 'android', organizer: 'Albin'});
+        var session3 = new Session({title: '3', category: 'web', organizer: 'GNK'});
+        var session4 = new Session({title: '4', category: 'android', organizer: 'Albin'});
+
+        <!--=====================-->
+        <!-- Collections -->
+        <!--=====================-->
+
+        var SessionList = Backbone.Collection.extend({
+            url: '#',
+            model: Session,
+            localStorage: new Store("session-list-store"),
+            initialize: function () {
+                console.log('initializing...');
+            }
+        });
+
+        var sessionList = new SessionList([session1, session2, session3, session4]);
+        console.log(sessionList.toJSON());
+
+        <!--=====================-->
+        <!-- Views -->
+        <!--=====================-->
+
+        /*
+         var SessionView = Backbone.View.extend({
+         model: Session,
+         tagName: 'li',
+         template: _.template($('#item-template').html()),
+         initialize: function () {
+         this.render()
+         },
+
+         render: function () {
+         var template = _.template($('#item-template').html(), {})
+         console.log(template);
+         this.$el.html(this.template(this.model.title));
+         return this;
+         }
+         });
+         */
+
+        var SessionListView = Backbone.View.extend({
+            el: '#main',
+            model: Session,
+
+            initialize: function () {
+                this.render();
+            },
+
+            render: function () {
+                var template = _.template($('#item-template').html(), {session: sessionList.models});
+                this.$el.html(template);
+                console.log(template);
+            }
+        });
+
+//    sessionView = new SessionView();
+        sessionListView = new SessionListView();
+
+    })(jQuery);
+
+
+</script>
+
+
+</body>
+</html>
