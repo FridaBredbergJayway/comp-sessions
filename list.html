@@ -22,16 +22,11 @@
             <h2>Sessions</h2>
             <section id="main">
             </section>
-            <div class="add-session">
-               <form class="add-form">
-                   <input class="input-title" placeholder="Title...">
-                   <input class="input-category" placeholder="Category...">
-                   <input class="input-organizer" placeholder="Organizer...">
-                   <button class="add-session">Add</button>
-               </form>
-            </div>
+            <section id="input">
+            </section>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Templates -->
@@ -60,7 +55,14 @@
 </script>
 
 <script type="text/template" id="input-template">
-
+    <div class="add-session">
+        <form class="add-form">
+            <input class="input-title" placeholder="Title...">
+            <input class="input-category" placeholder="Category...">
+            <input class="input-organizer" placeholder="Organizer...">
+            <button class="add-session">Add</button>
+        </form>
+    </div>
 </script>
 
 
@@ -132,23 +134,6 @@
         <!-- Views -->
         <!--=====================-->
 
-        /*
-         var SessionView = Backbone.View.extend({
-         model: Session,
-         tagName: 'li',
-         template: _.template($('#item-template').html()),
-         initialize: function () {
-         this.render()
-         },
-
-         render: function () {
-         var template = _.template($('#item-template').html(), {})
-         console.log(template);
-         this.$el.html(this.template(this.model.title));
-         return this;
-         }
-         });
-         */
 
         var SessionListView = Backbone.View.extend({
             el: '#main',
@@ -165,8 +150,25 @@
             }
         });
 
-//    sessionView = new SessionView();
         sessionListView = new SessionListView();
+
+        var InputView = Backbone.View.extend({
+            el: '#input',
+            model: Session,
+
+            initialize: function() {
+                this.render();
+            },
+
+            render: function() {
+                var template = _.template($('#input-template').html(), {});
+                this.$el.html(template);
+                console.log(template);
+            }
+
+        });
+
+        inputView = new InputView();
 
     })(jQuery);
 
