@@ -44,8 +44,6 @@ html, body, .container-fluid {
 .sessions h2 {
 }
 
-table {
-}
 
 th {
     height: 3em;
@@ -65,5 +63,14 @@ button {
     margin: 4px;
     font-size: 10px;
     color: #1F959B;
+    width: 5em;
 
+}
+
+input {
+    width: 9em;
+}
+
+form {
+    margin-top: 2em;
 }
