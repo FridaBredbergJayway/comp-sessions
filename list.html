@@ -122,10 +122,17 @@
         var sessionList = new SessionList([session1, session2, session3, session4]);
         console.log(sessionList.toJSON());
 
-        <!--=====================-->
+<!--=====================-->
         <!-- Views -->
-        <!--=====================-->
+<!--=====================-->
 
+        var SessionView = Backbone.View.extend({
+            model: Session,
+            render: function () {
+                return this;
+            }
+        });
+        sessionView = new SessionView();
 
         var SessionListView = Backbone.View.extend({
             el: '#main',
@@ -138,7 +145,6 @@
             render: function () {
                 var template = _.template($('#item-template').html(), {session: sessionList.models});
                 this.$el.html(template);
-                console.log(template);
             }
         });
 
