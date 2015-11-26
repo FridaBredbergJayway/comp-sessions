@@ -6,6 +6,26 @@ html, body, .container-fluid {
     display: table;
 }
 
+.categories a {
+    color: white;
+    text-decoration: none;
+}
+
+.categories a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.categories a:active {
+    text-decoration: none;
+    color: white;
+}
+
+.categories a:visited {
+    text-decoration: none;
+    color: white;
+}
+
 .row {
     height: 100%;
 }
@@ -72,4 +92,9 @@ input {
 
 form {
     margin-top: 2em;
+}
+
+.glyphicon {
+    float: right;
+    margin-right: 2em;
 }

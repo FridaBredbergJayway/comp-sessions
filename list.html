@@ -10,13 +10,9 @@
     <div class="row">
         <div class="col-sm-4 sidebar categories">
             <h2>Categories</h2>
-            <ul>
-                <li>Web</li>
-                <li>UX</li>
-                <li>iOS</li>
-                <li>Android</li>
-                <li>Cloud</li>
-            </ul>
+            <section id="category-list">
+                <ul></ul>
+            </section>
         </div>
         <div class="col-sm-8 sessions">
             <h2>Sessions</h2>
@@ -65,6 +61,15 @@
     </div>
 </script>
 
+<script type="text/template" id="category-template">
+    <ul>
+        <% _.each(category, function(categories) { %>
+        <li><a href="#"> <%= categories.get('category') %> </a> <span class="glyphicon glyphicon-unchecked"
+                                                                      aria-hidden="true"></span></li>
+        <% }); %>
+    </ul>
+
+</script>
 
 <!--=====================-->
 <!--Libraries-->
@@ -89,9 +94,9 @@
 <script type="text/javascript">
     (function ($) {
 
-<!--=====================-->
-       <!-- Models -->
-<!--=====================-->
+        <!--=====================-->
+        <!-- Models -->
+        <!--=====================-->
 
         var Session = Backbone.Model.extend({
             defaults: {
@@ -106,13 +111,20 @@
         var session3 = new Session({title: '3', category: 'web', organizer: 'GNK'});
         var session4 = new Session({title: '4', category: 'android', organizer: 'Albin'});
 
-<!--=====================-->
-    <!-- Collections -->
-<!--=====================-->
+        var Category = Backbone.Model.extend({
+            defaults: {
+                category: ''
+            }
+        });
+
+        <!--=====================-->
+        <!-- Collections -->
+        <!--=====================-->
 
         var SessionList = Backbone.Collection.extend({
             url: '#',
             model: Session,
+            tagName: 'li',
             localStorage: new Store("session-list-store"),
             initialize: function () {
                 console.log('initializing...');
@@ -122,9 +134,47 @@
         var sessionList = new SessionList([session1, session2, session3, session4]);
         console.log(sessionList.toJSON());
 
-<!--=====================-->
+        var CategoryList = Backbone.Collection.extend({
+            url: '#',
+            model: Category,
+            localStorage: new Store('categories-list'),
+            initialize: function () {
+                console.log('initializing...');
+            }
+        });
+
+        var categoryList = new CategoryList([{category: 'Android'}, {category: 'iOS'}, {category: 'Web'}, {category: 'Cloud'}]);
+        console.log(categoryList);
+
+        <!--=====================-->
         <!-- Views -->
-<!--=====================-->
+        <!--=====================-->
+
+        var CategoryView = Backbone.View.extend({
+            model: Category,
+            render: function () {
+                return this;
+            }
+        });
+
+        categoryView = new CategoryView();
+
+        var CategoryListView = Backbone.View.extend({
+            el: '#category-list',
+            model: Category,
+
+            initialize: function () {
+                this.render();
+            },
+
+            render: function () {
+                var template = _.template($('#category-template').html(), {category: categoryList.models});
+                this.$el.html(template);
+                console.log(template);
+            }
+        });
+
+        categoryListView = new CategoryListView();
 
         var SessionView = Backbone.View.extend({
             model: Session,
