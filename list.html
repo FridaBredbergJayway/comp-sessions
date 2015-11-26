@@ -184,14 +184,6 @@
 
         categoryListView = new CategoryListView();
 
-        var SessionView = Backbone.View.extend({
-            model: Session,
-            render: function () {
-                return this;
-            }
-        });
-        sessionView = new SessionView();
-
         var CategoryInputView = Backbone.View.extend({
             el: '#add-category',
             model: Category,
@@ -210,21 +202,30 @@
             },
 
             clear: function () {
-                $('.add-form').find('input[type=text]').val('');
+                $('.add-category-input').find('input[type=text]').val('');
             },
 
             submit: function (e) {
                 e.preventDefault();
-                var category = $('.add-category-input').val();
+                var category = $('.add-category-input').find('input[type=text]').val();
+                console.log(category);
                 var newCategory = new Category({category: category});
                 categoryList.add(newCategory.toJSON(), {});
                 console.log(categoryList);
-                categoryList.render();
+                this.clear();
+                categoryListView.render();
             }
-
         });
 
         categoryInputView = new CategoryInputView();
+
+        var SessionView = Backbone.View.extend({
+            model: Session,
+            render: function () {
+                return this;
+            }
+        });
+        sessionView = new SessionView();
 
         var SessionListView = Backbone.View.extend({
             el: '#main',

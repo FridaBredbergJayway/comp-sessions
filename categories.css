@@ -104,8 +104,10 @@ form {
     border: 1px solid white;
     border-radius: 4px;
     background-color: transparent;
+    color: white;
 }
 
 .add-category-input {
     margin-left: 2em;
+    color: black;
 }
