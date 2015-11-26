@@ -89,9 +89,9 @@
 <script type="text/javascript">
     (function ($) {
 
-        <!--=====================-->
-        <!-- Models -->
-        <!--=====================-->
+<!--=====================-->
+       <!-- Models -->
+<!--=====================-->
 
         var Session = Backbone.Model.extend({
             defaults: {
@@ -106,9 +106,9 @@
         var session3 = new Session({title: '3', category: 'web', organizer: 'GNK'});
         var session4 = new Session({title: '4', category: 'android', organizer: 'Albin'});
 
-        <!--=====================-->
-        <!-- Collections -->
-        <!--=====================-->
+<!--=====================-->
+    <!-- Collections -->
+<!--=====================-->
 
         var SessionList = Backbone.Collection.extend({
             url: '#',
@@ -154,11 +154,11 @@
             el: '#input',
             model: Session,
 
-            initialize: function() {
+            initialize: function () {
                 this.render();
             },
 
-            render: function() {
+            render: function () {
                 var template = _.template($('#input-template').html(), {});
                 this.$el.html(template);
                 console.log(template);
@@ -168,13 +168,13 @@
                 'submit': 'submit'
             },
 
-            submit: function(e) {
+            submit: function (e) {
                 e.preventDefault();
                 var title = $('.add-form').find('input[name=input-title]').val();
                 var category = $('.add-form').find('input[name=input-category]').val();
                 var organizer = $('.add-form').find('input[name=input-organizer]').val();
 
-                var addedSession = new Session({ title: title, category: category, organizer: organizer });
+                var addedSession = new Session({title: title, category: category, organizer: organizer});
                 sessionList.add(addedSession.toJSON(), {});
                 console.log(sessionList);
 
@@ -182,7 +182,7 @@
                 this.clear();
             },
 
-            clear: function() {
+            clear: function () {
                 $('#add-form').empty();
             }
 
