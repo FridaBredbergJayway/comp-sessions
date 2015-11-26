@@ -13,6 +13,8 @@
             <section id="category-list">
                 <ul></ul>
             </section>
+            <section id="add-category">
+            </section>
         </div>
         <div class="col-sm-8 sessions">
             <h2>Sessions</h2>
@@ -68,7 +70,13 @@
                                                                       aria-hidden="true"></span></li>
         <% }); %>
     </ul>
+</script>
 
+<script type="text/template" id="add-category-template">
+    <form class="add-category-input">
+        <input name="new-category" type="text" placeholder="Add new category...">
+        <button class="add-category" type="submit">Add</button>
+    </form>
 </script>
 
 <!--=====================-->
@@ -184,6 +192,40 @@
         });
         sessionView = new SessionView();
 
+        var CategoryInputView = Backbone.View.extend({
+            el: '#add-category',
+            model: Category,
+
+            initialize: function () {
+                this.render();
+            },
+
+            render: function () {
+                var template = _.template($('#add-category-template').html(), {});
+                this.$el.html(template);
+            },
+
+            events: {
+                'submit': 'submit'
+            },
+
+            clear: function () {
+                $('.add-form').find('input[type=text]').val('');
+            },
+
+            submit: function (e) {
+                e.preventDefault();
+                var category = $('.add-category-input').val();
+                var newCategory = new Category({category: category});
+                categoryList.add(newCategory.toJSON(), {});
+                console.log(categoryList);
+                categoryList.render();
+            }
+
+        });
+
+        categoryInputView = new CategoryInputView();
+
         var SessionListView = Backbone.View.extend({
             el: '#main',
             model: Session,
@@ -216,6 +258,7 @@
             events: {
                 'submit': 'submit'
             },
+
             clear: function () {
                 $('.add-form').find('input[type=text]').val('');
             },
@@ -231,7 +274,7 @@
                 console.log(sessionList);
                 sessionListView.render();
                 this.clear();
-            },
+            }
 
         });
 

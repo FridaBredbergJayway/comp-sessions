@@ -84,6 +84,7 @@ button {
     font-size: 10px;
     color: #1F959B;
     width: 5em;
+    align-content: center;
 }
 
 input {
@@ -97,4 +98,14 @@ form {
 .glyphicon {
     float: right;
     margin-right: 2em;
+}
+
+.add-category {
+    border: 1px solid white;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+.add-category-input {
+    margin-left: 2em;
 }
