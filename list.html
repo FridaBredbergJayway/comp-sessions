@@ -38,7 +38,7 @@
         </tr>
         </thead>
         <tbody>
-        <% _.each(session, function(session) { %>
+        <% sessions.forEach(function(session) { %>
         <tr>
             <td><%= session.get('title') %></td>
             <td><%= session.get('category') %></td>
@@ -65,9 +65,12 @@
 
 <script type="text/template" id="category-template">
     <ul>
-        <% _.each(category, function(categories) { %>
-        <li><a href="#"> <%= categories.get('category') %> </a> <span class="glyphicon glyphicon-unchecked"
-                                                                      aria-hidden="true"></span></li>
+        <% console.log('hej', categories); categories.forEach(function(category) { %>
+        <a href="#">
+            <li class="cat-item"> <%= category.get('category') %>  <span
+                    class="glyphicon glyphicon-ok hide"
+                    aria-hidden="true"></span></li>
+        </a>
         <% }); %>
     </ul>
 </script>
@@ -88,11 +91,11 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"
         type="text/javascript"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js" type="text/javascript"></script>
 <script sr="https://cdnjs.cloudflare.com/ajax/libs/json2/20150503/json2.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone.js" type="text/javascript"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min.js"
         type="text/javascript"></script>
 
@@ -106,6 +109,13 @@
         <!-- Models -->
         <!--=====================-->
 
+        var Category = Backbone.Model.extend({
+            defaults: {
+                category: '',
+                marked: false
+            }
+        });
+
         var Session = Backbone.Model.extend({
             defaults: {
                 title: '',
@@ -114,16 +124,10 @@
             }
         });
 
-        var session1 = new Session({title: '1', category: 'web', organizer: 'GNK'});
-        var session2 = new Session({title: '2', category: 'android', organizer: 'Albin'});
-        var session3 = new Session({title: '3', category: 'web', organizer: 'GNK'});
-        var session4 = new Session({title: '4', category: 'android', organizer: 'Albin'});
-
-        var Category = Backbone.Model.extend({
-            defaults: {
-                category: ''
-            }
-        });
+        var session1 = new Session({title: '1', category: 'Web', organizer: 'GNK'});
+        var session2 = new Session({title: '2', category: 'Android', organizer: 'Albin'});
+        var session3 = new Session({title: '3', category: 'Web', organizer: 'GNK'});
+        var session4 = new Session({title: '4', category: 'Android', organizer: 'Albin'});
 
         <!--=====================-->
         <!-- Collections -->
@@ -151,21 +155,16 @@
             }
         });
 
+
+
+
         var categoryList = new CategoryList([{category: 'Android'}, {category: 'iOS'}, {category: 'Web'}, {category: 'Cloud'}]);
         console.log(categoryList);
-
+        var selItemsList;
         <!--=====================-->
         <!-- Views -->
         <!--=====================-->
 
-        var CategoryView = Backbone.View.extend({
-            model: Category,
-            render: function () {
-                return this;
-            }
-        });
-
-        categoryView = new CategoryView();
 
         var CategoryListView = Backbone.View.extend({
             el: '#category-list',
@@ -176,9 +175,34 @@
             },
 
             render: function () {
-                var template = _.template($('#category-template').html(), {category: categoryList.models});
-                this.$el.html(template);
+                var template = _.template($('#category-template').html());
+                this.$el.html(template({categories: categoryList}));
                 console.log(template);
+                console.log('render: ' + JSON.stringify(categoryList));
+            },
+
+            events: {
+                'click .cat-item': 'mark'
+            },
+
+            mark: function (e) {
+                if ($(e.target).children('.glyphicon').hasClass('hide')) {
+                    $(e.target).children('.glyphicon').removeClass('hide');
+                    var cat = $(e.target).text().trim();
+                    mCat = categoryList.where({category: cat});
+                    mCat[0].set('marked', true);
+                    selItemsList = categoryList.where({marked: true}); //new category collection with only marked: true models
+                    console.log('selItemsList: ', selItemsList);
+                    sessionListView.render();
+
+                } else {
+                    $(e.target).children('.glyphicon').addClass('hide');
+                    var cat = $(e.target).text().trim();
+                    mCat = categoryList.where({category: cat});
+                    mCat[0].set('marked', false);
+                    selItemsList = categoryList.where({marked: true});
+                    sessionListView.render();
+                }
             }
         });
 
@@ -201,10 +225,6 @@
                 'submit': 'submit'
             },
 
-            clear: function () {
-                $('.add-category-input').find('input[type=text]').val('');
-            },
-
             submit: function (e) {
                 e.preventDefault();
                 var category = $('.add-category-input').find('input[type=text]').val();
@@ -214,6 +234,10 @@
                 console.log(categoryList);
                 this.clear();
                 categoryListView.render();
+            },
+
+            clear: function () {
+                $('.add-category-input').find('input[type=text]').val('');
             }
         });
 
@@ -236,12 +260,29 @@
             },
 
             render: function () {
-                var template = _.template($('#item-template').html(), {session: sessionList.models});
-                this.$el.html(template);
+                var template = _.template($('#item-template').html());
+                console.log('selItemsList: ' + JSON.stringify(selItemsList));
+                if (selItemsList && selItemsList.length !== 0) {
+                    var selCats = selItemsList.map(function(category) {
+                        return category.get('category');
+                    });
+                    var selSess = sessionList.filter(function(session) {
+                        var cat = session.get('category');
+                        if(selCats.indexOf(cat) !== -1) {
+                            return true;
+                        } else return false;
+                    });
+                    console.log(JSON.stringify(selSess));
+                    this.$el.html(template({sessions: selSess}));
+                } else {
+                    this.$el.html(template({sessions: sessionList}));
+                }
             }
         });
 
         sessionListView = new SessionListView();
+        console.log(selItemsList);
+
 
         var InputView = Backbone.View.extend({
             el: '#input',
@@ -269,7 +310,6 @@
                 var title = $('.add-form').find('input[name=input-title]').val();
                 var category = $('.add-form').find('input[name=input-category]').val();
                 var organizer = $('.add-form').find('input[name=input-organizer]').val();
-
                 var addedSession = new Session({title: title, category: category, organizer: organizer});
                 sessionList.add(addedSession.toJSON(), {});
                 console.log(sessionList);

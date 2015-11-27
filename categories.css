@@ -67,6 +67,7 @@ html, body, .container-fluid {
 
 th {
     height: 3em;
+    width: 10em;
 }
 
 td {
@@ -110,4 +111,8 @@ form {
 .add-category-input {
     margin-left: 2em;
     color: black;
+}
+
+.hide {
+    display: none;
 }
