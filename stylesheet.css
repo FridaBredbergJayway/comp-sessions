@@ -64,7 +64,6 @@ html, body, .container-fluid {
 .sessions h2 {
 }
 
-
 th {
     height: 3em;
     width: 10em;
@@ -74,7 +73,6 @@ td {
     width: 10em;
     height: 2em;
     color: #1F959B;
-
 }
 
 button {
@@ -89,11 +87,13 @@ button {
 }
 
 input {
-    width: 9.5em;
+    width: 9em;
+    margin: 0 0.5em;
 }
 
 form {
     margin-top: 2em;
+    width: 35em;
 }
 
 .glyphicon {
@@ -111,6 +111,10 @@ form {
 .add-category-input {
     margin-left: 2em;
     color: black;
+}
+
+button.add-session {
+    margin-left: 2.1em;
 }
 
 .hide {

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/template" id="item-template">
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Organizer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% sessions.forEach(function(session) { %>
+        <tr>
+            <td><%= session.get('title') %></td>
+            <td><%= session.get('category') %></td>
+            <td><%= session.get('organizer') %></td>
+            <td>
+                <button>Sign Up</button>
+            </td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</script>
+
+<script type="text/template" id="item-template">
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Organizer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% sessions.forEach(function(session) { %>
+        <tr>
+            <td><%= session.get('title') %></td>
+            <td><%= session.get('category') %></td>
+            <td><%= session.get('organizer') %></td>
+            <td>
+                <button>Sign Up</button>
+            </td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</script>
+
+<script type="text/template" id="input-template">
+    <div class="add-session">
+        <form class="add-form">
+            <input name="input-title" type="text" placeholder="Title...">
+            <input name="input-category" type="text" placeholder="Category...">
+            <input name="input-organizer" type="text" placeholder="Organizer...">
+            <button class="add-session" type="submit">Add</button>
+        </form>
+    </div>
+</script>
+</body>
+</html>

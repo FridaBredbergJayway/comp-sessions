@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/template" id="category-template">
+    <ul>
+        <% categories.forEach(function(category) { %>
+        <a href="#">
+            <li class="cat-item"> <%= category.get('category') %>  <span
+                    class="glyphicon glyphicon-ok hide"
+                    aria-hidden="true"></span></li>
+        </a>
+        <% }); %>
+    </ul>
+</script>
+</body>
+</html>
