@@ -4,4 +4,4 @@
 var CategoryView = new Backbone.View.extend({
     Model: Category,
 
-})
+});
