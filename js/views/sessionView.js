@@ -6,5 +6,6 @@ var SessionView = Backbone.View.extend({
     render: function () {
         return this;
     }
+
 });
 sessionView = new SessionView();

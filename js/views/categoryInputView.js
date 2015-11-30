@@ -32,3 +32,4 @@ var CategoryInputView = Backbone.View.extend({
 });
 
 categoryInputView = new CategoryInputView();
+
