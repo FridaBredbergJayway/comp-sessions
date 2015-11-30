@@ -12,4 +12,4 @@ var CategoryList = Backbone.Collection.extend({
 
 
 var categoryList = new CategoryList([{category: 'Android'}, {category: 'iOS'}, {category: 'Web'}, {category: 'Cloud'}]);
-console.log(categoryList);
+console.log(categoryList.toJSON());

@@ -3,12 +3,9 @@ var InputView = Backbone.View.extend({
     el: '#input',
     model: Session,
 
-    initialize: function () {
-        this.render();
-    },
-
     render: function () {
         var template = _.template($('#input-template').html(), {});
+        console.log('template ', template);
         this.$el.html(template);
     },
 
