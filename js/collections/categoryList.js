@@ -7,9 +7,12 @@ var CategoryList = Backbone.Collection.extend({
     localStorage: new Store('categories-list'),
     initialize: function () {
         console.log('initializing...');
+    },
+
+    render: function() {
+        return this;
     }
 });
-
 
 var categoryList = new CategoryList([{category: 'Android'}, {category: 'iOS'}, {category: 'Web'}, {category: 'Cloud'}]);
 console.log(categoryList.toJSON());

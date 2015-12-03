@@ -3,6 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles/stylesheet.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js" type="text/javascript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone.js" type="text/javascript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min.js" type="text/javascript"></script>
+
+    <link type="text/html" href="templates/sessions.html">
+    <link type="text/html" href="templates/categories.html">
+
+
 </head>
 
 <body>
@@ -18,42 +30,77 @@
         </div>
         <div class="col-sm-8 sessions">
             <h2>Sessions</h2>
-            <section id="main">
+            <section id="list">
             </section>
             <section id="input">
             </section>
         </div>
     </div>
 </div>
+<script type="text/template" id="category-template">
+    <ul>
+        <% categories.forEach(function(category) { %>
+        <a href="#">
+            <li class="cat-item"> <%= category.get('category') %>
+                <span class="glyphicon glyphicon-ok hide" aria-hidden="true"></span>
+            </li>
+        </a>
+        <% }); %>
+    </ul>
+</script>
 
-<!--=====================-->
-<!--Libraries-->
-<!--=====================-->
+<script type="text/template" id="add-category-template">
+    <form class="add-category-input">
+        <input name="new-category" type="text" placeholder="Add new category...">
+        <button class="add-category" type="submit">Add</button>
+    </form>
+</script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<link rel="stylesheet" href="styles/stylesheet.css">
+<script type="text/template" id="session-template">
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Organizer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% sessions.forEach(function(session) { %>
+        <tr>
+            <td><%= Sessions.title %></td>
+            <td><%= Sessions.category %></td>
+            <td><%= Sessions.organizer %></td>
+            <td>
+                <button>Sign Up</button>
+            </td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</script>
 
+<script type="text/template" id="input-template">
+    <div class="add-session">
+        <form class="add-form">
+            <input name="input-title" type="text" placeholder="Title...">
+            <input name="input-category" type="text" placeholder="Category...">
+            <input name="input-organizer" type="text" placeholder="Organizer...">
+            <button class="add-session" type="submit">Add</button>
+        </form>
+    </div>
+</script>
 
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"
-        type="text/javascript"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js" type="text/javascript"></script>
-<script sr="https://cdnjs.cloudflare.com/ajax/libs/json2/20150503/json2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone.js" type="text/javascript"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min.js"
-        type="text/javascript"></script>
 <script  type="text/javascript" src="js/models/category.js"></script>
 <script  type="text/javascript" src="js/models/session.js"></script>
+<script  type="text/javascript" src="js/collections/categoryList.js"></script>
+<script  type="text/javascript" src="js/collections/sessionList.js"></script>
 <script  type="text/javascript" src="js/views/categoryInputView.js"></script>
 <script  type="text/javascript" src="js/views/categoryListView.js"></script>
 <script  type="text/javascript" src="js/views/categoryView.js"></script>
 <script  type="text/javascript" src="js/views/inputView.js"></script>
-<script  type="text/javascript" src="js/views/sessionListView.js"></script>
 <script  type="text/javascript" src="js/views/sessionView.js"></script>
-<script  type="text/javascript" src="js/collections/categoryList.js"></script>
-<script  type="text/javascript" src="js/collections/sessionList.js"></script>
+<script  type="text/javascript" src="js/views/sessionListView.js"></script>
 
 </body>
 </html>

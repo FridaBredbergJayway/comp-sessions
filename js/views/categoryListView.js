@@ -3,9 +3,11 @@
  */
 var CategoryListView = Backbone.View.extend({
     el: '#category-list',
-    model: Category
-
+    model: categoryList,
+    initialize: function() {
+        categoryList.fetch(); // Loads list from local storage
+    }
 });
 
-categoryListView = new CategoryListView();
+var categoryListView = new CategoryListView();
 

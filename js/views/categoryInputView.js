@@ -2,6 +2,9 @@ var CategoryInputView = Backbone.View.extend({
     el: '#add-category',
     model: Category,
 
+    initialize: function() {
+        this.render();
+    },
     render: function () {
         var template = _.template($('#add-category-template').html(), {});
         this.$el.html(template);

@@ -1,13 +1,11 @@
 var SessionListView = Backbone.View.extend({
-    el: '#main',
-    model: Session,
-
+    el: '#list',
+    model: sessionList,
     initialize: function () {
-        this.render();
-    },
-
-    render: function () {
+        sessionList.bind('add', this.addAll, this);
+        sessionList.bind('reset', this.addAll, this);
+        sessionList.fetch();
     }
 });
 
-sessionListView = new SessionListView();
+var sessionListView = new SessionListView();

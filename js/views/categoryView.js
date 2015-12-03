@@ -1,21 +1,19 @@
 /**
  * Created by frida on 11/27/15.
  */
-var CategoryView = new Backbone.View.extend({
+
+var CategoryView = Backbone.View.extend({
     Model: Category,
-    template: '#category-template',
-
-    render: function (){
-        this.$el.html(this.template(this.model.toJSON()));
+    el: '.cat-item',
+    template: _.template($('#category-template').html()),
+    initialize: function () {
+        this.render();
+    },
+    render: function () {
+        console.log('cat :');
+        this.$el.html(this.template({categories: categoryList}));
         return this;
-    },
-
-    events: {
-        'click td' : 'mark'
-    },
-
-    mark: function() {
-        console.log(this.$el);
     }
 });
 
+var categoryView = new CategoryView();

@@ -2,21 +2,20 @@
 var InputView = Backbone.View.extend({
     el: '#input',
     model: Session,
-
+    initialize: function() {
+        this.render();
+    },
     render: function () {
         var template = _.template($('#input-template').html(), {});
         console.log('template ', template);
         this.$el.html(template);
     },
-
     events: {
         'submit': 'submit'
     },
-
     clear: function () {
         $('.add-form').find('input[type=text]').val('');
     },
-
     submit: function (e) {
         e.preventDefault();
         var title = $('.add-form').find('input[name=input-title]').val();
@@ -28,7 +27,6 @@ var InputView = Backbone.View.extend({
         sessionListView.render();
         this.clear();
     }
-
 });
 
 inputView = new InputView();
