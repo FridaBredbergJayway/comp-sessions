@@ -3,8 +3,8 @@ views.SessionListView = Backbone.View.extend({
     el: '#list',
     initialize: function () {
         var self = this;
-        self.collection.on('change', this.render, this); //re-render on change
-        self.collection.fetch().done(function() {
+        this.collection.on('change', this.render, this); //re-render on change
+        this.collection.fetch().done(function() {
             self.render();
         });
     },
@@ -17,8 +17,8 @@ views.SessionListView = Backbone.View.extend({
             console.log(model);
             var view = new views.SessionView();
             self.$el.append(view.render().el);
-            return this;
         });
+            return this;
     }
 });
 
