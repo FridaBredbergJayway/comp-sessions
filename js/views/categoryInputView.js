@@ -1,6 +1,8 @@
-var CategoryInputView = Backbone.View.extend({
+var views = {};
+
+views.CategoryInputView = Backbone.View.extend({
     el: '#add-category',
-    model: Category,
+    model: models.Category,
 
     initialize: function() {
         this.render();
@@ -17,9 +19,10 @@ var CategoryInputView = Backbone.View.extend({
     submit: function (e) {
         e.preventDefault();
         var category = $('.add-category-input').find('input[type=text]').val();
-        var newCategory = new Category({category: category});
-        categoryList.add(newCategory.toJSON(), {});
-        categoryListView.render();
+        //var newCategory = new Category({category: category});
+        collections.categoryList.add({category: category});
+        console.log(categoryList);
+        views.categoryListView.render();
         this.clear();
     },
 
@@ -28,5 +31,5 @@ var CategoryInputView = Backbone.View.extend({
     }
 });
 
-categoryInputView = new CategoryInputView();
+categoryInputView = new views.CategoryInputView();
 

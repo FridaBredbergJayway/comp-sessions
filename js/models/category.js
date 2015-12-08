@@ -1,4 +1,6 @@
-var Category = Backbone.Model.extend({
+var models = {};
+
+models.Category = Backbone.Model.extend({
     defaults: {
         category: '',
         marked: false

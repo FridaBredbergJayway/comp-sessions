@@ -1,7 +1,7 @@
 
-var InputView = Backbone.View.extend({
+views.InputView = Backbone.View.extend({
     el: '#input',
-    model: Session,
+    model: models.Session,
     initialize: function() {
         this.render();
     },
@@ -22,12 +22,11 @@ var InputView = Backbone.View.extend({
         var category = $('.add-form').find('input[name=input-category]').val();
         var organizer = $('.add-form').find('input[name=input-organizer]').val();
         var addedSession = new Session({title: title, category: category, organizer: organizer});
-        sessionList.add(addedSession.toJSON(), {});
+        collections.sessionList.add(addedSession.toJSON(), {});
         console.log(sessionList);
-        sessionListView.render();
         this.clear();
     }
 });
 
-inputView = new InputView();
+inputView = new views.InputView();
 

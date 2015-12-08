@@ -1,19 +1,17 @@
 /**
  * Created by frida on 11/27/15.
  */
-var SessionView = Backbone.View.extend({
-    model: Session,
-    el: '#list',
-    template:  _.template($('#session-template').html()),
+views.SessionView = Backbone.View.extend({
     initialize: function () {
-        this.model.bind('change', this.render, this); //re-render on change
+        //this.model.bind('change', this.render);
         this.render();
     },
     render: function () {
-        this.$el.html(this.template({sessions: sessionList}));
+        var template = _.template($('#session-template').html());
+        console.log(template);
+        console.log('sessionView ', JSON.stringify(this.model));
+        this.$el.html(template({session: sessionList}));
         return this;
     }
 });
-var sessionView = new SessionView();
-
-
+var sessionView = new views.SessionView();

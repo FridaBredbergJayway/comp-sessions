@@ -1,11 +1,25 @@
-var SessionListView = Backbone.View.extend({
+views.SessionListView = Backbone.View.extend({
+    collection: null,
     el: '#list',
-    model: sessionList,
     initialize: function () {
-        sessionList.bind('add', this.addAll, this);
-        sessionList.bind('reset', this.addAll, this);
-        sessionList.fetch();
+        var self = this;
+        this.collection.on('change', this.render, this); //re-render on change
+        this.collection.fetch().done(function() {
+            self.render();
+        });
+    },
+    render: function () {
+        this.$el.empty();
+        console.log(this.collection);
+        console.log('sessionlistview: ', this.collection);
+        this.collection.each(function(model){
+            console.log(model);
+            var view = new views.SessionView();
+            this.$el.append(view.render().el);
+            return this;
+        });
     }
 });
 
-var sessionListView = new SessionListView();
+var sessionListView = new views.SessionListView({collection: sessionList});
+// will create n number of SessionView instances

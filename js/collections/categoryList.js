@@ -1,9 +1,11 @@
 /**
  * Created by frida on 11/27/15.
  */
-var CategoryList = Backbone.Collection.extend({
+var collections = {};
+
+collections.CategoryList = Backbone.Collection.extend({
     url: '#',
-    model: Category,
+    model: models.Category,
     localStorage: new Store('categories-list'),
     initialize: function () {
         console.log('initializing...');
@@ -14,5 +16,5 @@ var CategoryList = Backbone.Collection.extend({
     }
 });
 
-var categoryList = new CategoryList([{category: 'Android'}, {category: 'iOS'}, {category: 'Web'}, {category: 'Cloud'}]);
+var categoryList = new collections.CategoryList([{category: 'Android'}, {category: 'iOS'}, {category: 'Web'}, {category: 'Cloud'}]);
 console.log(categoryList.toJSON());

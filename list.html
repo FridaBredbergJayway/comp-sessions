@@ -66,16 +66,15 @@
         </tr>
         </thead>
         <tbody>
-        <% sessions.forEach(function(session) { %>
         <tr>
-            <td><%= Sessions.title %></td>
-            <td><%= Sessions.category %></td>
-            <td><%= Sessions.organizer %></td>
+            <td><%= session.title %></td>
+            <td><%= session.category %></td>
+            <td><%= session.organizer %></td>
             <td>
                 <button>Sign Up</button>
             </td>
         </tr>
-        <% }); %>
+
         </tbody>
     </table>
 </script>
@@ -95,9 +94,10 @@
 <script  type="text/javascript" src="js/models/session.js"></script>
 <script  type="text/javascript" src="js/collections/categoryList.js"></script>
 <script  type="text/javascript" src="js/collections/sessionList.js"></script>
+<script  type="text/javascript" src="js/router.js"></script>
 <script  type="text/javascript" src="js/views/categoryInputView.js"></script>
-<script  type="text/javascript" src="js/views/categoryListView.js"></script>
 <script  type="text/javascript" src="js/views/categoryView.js"></script>
+<script  type="text/javascript" src="js/views/categoryListView.js"></script>
 <script  type="text/javascript" src="js/views/inputView.js"></script>
 <script  type="text/javascript" src="js/views/sessionView.js"></script>
 <script  type="text/javascript" src="js/views/sessionListView.js"></script>

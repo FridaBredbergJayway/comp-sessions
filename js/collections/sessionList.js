@@ -1,6 +1,6 @@
-var SessionList = Backbone.Collection.extend({
+collections.SessionList = Backbone.Collection.extend({
     url: '#',
-    model: Session,
+    model: models.Session,
     tagName: 'li',
     localStorage: new Store("session-list-store"),
     initialize: function () {
@@ -8,7 +8,5 @@ var SessionList = Backbone.Collection.extend({
     }
 });
 
-var sessionList = new SessionList([session1, session2, session3, session4]);
-console.log(sessionList.toJSON());
-
-
+var sessionList = new collections.SessionList([session1, session2, session3, session4]);
+console.log(sessionList);
