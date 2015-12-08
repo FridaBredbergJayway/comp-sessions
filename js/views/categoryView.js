@@ -11,7 +11,7 @@ views.CategoryView = Backbone.View.extend({
     },
     render: function () {
         console.log(this.model);
-        this.$el.html(this.template({categories: categoryList}));
+        this.$el.html(this.template({category: categoryList}));
         return this;
     }
 });
