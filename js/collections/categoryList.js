@@ -10,7 +10,6 @@ collections.CategoryList = Backbone.Collection.extend({
     initialize: function () {
         console.log('initializing...');
     },
-
     render: function() {
         return this;
     }
