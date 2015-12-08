@@ -2,6 +2,7 @@
  * Created by frida on 11/27/15.
  */
 views.CategoryListView = Backbone.View.extend({
+    collection: null,
     el: '#category-list',
     initialize: function() {
         var self = this;

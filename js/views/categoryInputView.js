@@ -12,15 +12,15 @@ views.CategoryInputView = Backbone.View.extend({
     events: {
         'submit': 'submit'
     },
+    clear: function () {
+        $('.add-category-input').find('input[type=text]').val('');
+    },
     submit: function (e) {
         e.preventDefault();
         var category = $('.add-category-input').find('input[type=text]').val();
         categoryList.add({category: category});
         console.log(categoryList);
         this.clear();
-    },
-    clear: function () {
-        $('.add-category-input').find('input[type=text]').val('');
     }
 });
 categoryInputView = new views.CategoryInputView({model: categoryList});
