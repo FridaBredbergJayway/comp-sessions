@@ -9,8 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js" type="text/javascript"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone.js" type="text/javascript"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min.js" type="text/javascript"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.1.16/backbone.localStorage-min.js" type="text/javascript"></script>
     <link type="text/html" href="templates/sessions.html">
     <link type="text/html" href="templates/categories.html">
 
@@ -40,7 +39,7 @@
 <script type="text/template" id="category-template">
     <ul>
         <a href="#">
-            <li class="cat-item"> <%= category.get('category') %>
+            <li class="cat-item"> <%= category %>
                 <span class="glyphicon glyphicon-ok hide" aria-hidden="true"></span>
             </li>
         </a>
@@ -65,9 +64,9 @@
         </thead>
         <tbody>
         <tr>
-            <td><%= session.title %></td>
-            <td><%= session.category %></td>
-            <td><%= session.organizer %></td>
+            <td><%= title %></td>
+            <td><%= category %></td>
+            <td><%= organizer %></td>
             <td>
                 <button>Sign Up</button>
             </td>
