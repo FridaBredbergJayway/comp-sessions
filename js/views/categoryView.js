@@ -7,11 +7,11 @@ views.CategoryView = Backbone.View.extend({
     el: '.cat-item',
     template: _.template($('#category-template').html()),
     initialize: function () {
-        this.model.bind('change', this.render, this); //re-render on change
+        this.collection.on("change update", this.render, this);
     },
     render: function () {
         console.log(this.model);
-        this.$el.html(this.template({category: categoryList}));
+        this.$el.html(this.template(this.model.toJSON()));
         return this;
     }
 });
