@@ -8,13 +8,12 @@ views.CategoryView = Backbone.View.extend({
         this.$el.html(this.template(this.model.toJSON()));
         return this;
     },
-
     events: {
-        'click .cat-item' : 'filter'
+        'click strong' : 'mark'
     },
-
-    filter: function() {
-        alert('you clicked me');
+    mark: function() {
+        var cat = this.model.get('category');
+        categoryList.set({category: cat, marked: !this.model.get('marked')});
     }
 });
 var categoryView = new views.CategoryView();
