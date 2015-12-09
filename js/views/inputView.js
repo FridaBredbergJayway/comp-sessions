@@ -17,10 +17,12 @@ views.InputView = Backbone.View.extend({
     },
     submit: function (e) {
         e.preventDefault();
-        var title = $('.add-form').find('input[name=input-title]').val();
-        var category = $('.add-form').find('input[name=input-category]').val();
-        var organizer = $('.add-form').find('input[name=input-organizer]').val();
-        sessionList.add({title: title, category: category, organizer: organizer});
+        var map = {};
+        $(".input").each(function() {
+            map[$(this).attr("name")] = $(this).val();
+        });
+        console.log(map);
+        sessionList.create({title: map.inputTitle, category: map.inputCategory, organizer: map.inputOrganizer});
         console.log(sessionList);
         this.clear();
     }
