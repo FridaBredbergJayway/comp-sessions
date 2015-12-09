@@ -21,8 +21,7 @@ views.InputView = Backbone.View.extend({
         var title = $('.add-form').find('input[name=input-title]').val();
         var category = $('.add-form').find('input[name=input-category]').val();
         var organizer = $('.add-form').find('input[name=input-organizer]').val();
-        var addedSession = new models.Session({title: title, category: category, organizer: organizer});
-        sessionList.add(addedSession);
+        sessionList.create({title: title, category: category, organizer: organizer});
         console.log(sessionList);
         this.clear();
     }
