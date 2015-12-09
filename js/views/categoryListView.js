@@ -1,8 +1,6 @@
 /**
  * Created by frida on 11/27/15.
  */
-'use strict';
-
 views.CategoryListView = Backbone.View.extend({
     collection: null,
     el: '#category-list',
