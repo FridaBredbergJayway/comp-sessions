@@ -3,7 +3,7 @@ views.SessionListView = Backbone.View.extend({
     el: '#list',
     initialize: function () {
         var self = this;
-        this.collection.on("change update", this.render, this);
+        this.collection.on("change update add", this.render, this);
         this.collection.fetch().done(function() {
             self.render();
         });

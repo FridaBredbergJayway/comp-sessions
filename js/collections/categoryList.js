@@ -6,7 +6,7 @@ var collections = {};
 collections.CategoryList = Backbone.Collection.extend({
     url: '#',
     model: models.Category,
-    localStorage: new Store('categories-list'),
+    localStorage: new Backbone.LocalStorage('CategoryList'),
     initialize: function () {
         console.log('initializing...');
     },

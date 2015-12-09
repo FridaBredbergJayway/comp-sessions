@@ -2,7 +2,7 @@ collections.SessionList = Backbone.Collection.extend({
     url: '#',
     model: models.Session,
     tagName: 'li',
-    localStorage: new Store("session-list-store"),
+    localStorage: new Backbone.LocalStorage('SessionList'),
     initialize: function () {
         console.log('initializing...');
     }
