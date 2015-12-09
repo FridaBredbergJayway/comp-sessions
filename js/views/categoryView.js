@@ -13,9 +13,8 @@ views.CategoryView = Backbone.View.extend({
         'click .cat-item' : 'filter'
     },
 
-    filter: function(e) {
+    filter: function() {
         alert('you clicked me');
-         this.render();
     }
 });
 var categoryView = new views.CategoryView();
