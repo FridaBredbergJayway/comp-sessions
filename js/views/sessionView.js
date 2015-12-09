@@ -3,9 +3,6 @@
  */
 views.SessionView = Backbone.View.extend({
     template: _.template($('#session-template').html()),
-    initialize: function () {
-        this.render();
-    },
     render: function () {
         console.log(this.template);
         console.log('sessionView ', JSON.stringify(this.model));

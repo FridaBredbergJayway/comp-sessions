@@ -7,13 +7,14 @@ views.CategoryListView = Backbone.View.extend({
     initialize: function() {
         var self = this;
         this.collection.on("change update add", this.render, this);
-        this.collection.fetch().done(function() {
-            self.render();
+        this.collection.fetch({
+            success: function() {
+                console.log('fetch done ', self.collection);
+            }
         });
     },
     render: function () {
         var self = this;
-        this.$el.append(view.render().el);
         console.log(this.collection);
         this.collection.each(function(model){
             console.log(model);

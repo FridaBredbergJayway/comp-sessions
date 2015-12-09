@@ -2,10 +2,11 @@ views.SessionListView = Backbone.View.extend({
     collection: null,
     el: '#list',
     initialize: function () {
-        var self = this;
         this.collection.on("change update add", this.render, this);
-        this.collection.fetch().done(function() {
-            self.render();
+        this.collection.fetch({
+            success: function() {
+                console.log('fetch done ', self.collection);
+            }
         });
     },
     render: function () {
@@ -23,3 +24,4 @@ views.SessionListView = Backbone.View.extend({
 });
 
 var sessionListView = new views.SessionListView({collection: sessionList});
+Backbone.history.start();
