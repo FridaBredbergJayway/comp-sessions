@@ -5,6 +5,9 @@ collections.SessionList = Backbone.Collection.extend({
     localStorage: new Backbone.LocalStorage('SessionList'),
     initialize: function () {
         console.log('initializing...');
+    },
+    render: function() {
+        return this;
     }
 });
 
