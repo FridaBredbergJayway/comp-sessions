@@ -3,9 +3,6 @@ collections.SessionList = Backbone.Collection.extend({
     model: models.Session,
     tagName: 'li',
     localStorage: new Backbone.LocalStorage('SessionList'),
-    initialize: function () {
-        console.log('initializing...');
-    },
     render: function() {
         return this;
     }

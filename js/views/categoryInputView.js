@@ -17,9 +17,8 @@ views.CategoryInputView = Backbone.View.extend({
     },
     submit: function (e) {
         e.preventDefault();
-        var category = $('.add-category-input').find('input[type=text]').val();
+        var category = $('.add-category-input').find('input[type=text]').val().trim();
         categoryList.create({category: category});
-        console.log(categoryList);
         this.clear();
     }
 });
