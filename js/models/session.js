@@ -3,6 +3,7 @@
  */
 
 models.Session = Backbone.Model.extend({
+    urlRoot: '#',
     defaults: {
         title: '',
         category: '',
@@ -14,3 +15,5 @@ var session1 = new models.Session({title: '1', category: 'Web', organizer: 'GNK'
 var session2 = new models.Session({title: '1', category: 'Web', organizer: 'GNK'});
 var session3 = new models.Session({title: '1', category: 'Web', organizer: 'GNK'});
 var session4 = new models.Session({title: '1', category: 'Web', organizer: 'GNK'});
+
+session1.save();

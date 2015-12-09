@@ -16,4 +16,4 @@ collections.CategoryList = Backbone.Collection.extend({
 });
 
 var categoryList = new collections.CategoryList([{category: 'Android'}, {category: 'iOS'}, {category: 'Web'}, {category: 'Cloud'}]);
-console.log(categoryList.toJSON());
+console.log(categoryList);

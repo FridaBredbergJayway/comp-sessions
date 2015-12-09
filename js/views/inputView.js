@@ -7,7 +7,6 @@ views.InputView = Backbone.View.extend({
     },
     render: function () {
         var template = _.template($('#input-template').html(), {});
-        console.log('template ', template);
         this.$el.html(template);
     },
     events: {
@@ -21,7 +20,7 @@ views.InputView = Backbone.View.extend({
         var title = $('.add-form').find('input[name=input-title]').val();
         var category = $('.add-form').find('input[name=input-category]').val();
         var organizer = $('.add-form').find('input[name=input-organizer]').val();
-        sessionList.create({title: title, category: category, organizer: organizer});
+        sessionList.add({title: title, category: category, organizer: organizer});
         console.log(sessionList);
         this.clear();
     }
