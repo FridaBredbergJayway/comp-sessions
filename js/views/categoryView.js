@@ -6,7 +6,6 @@ views.CategoryView = Backbone.View.extend({
     el: '.cat-item',
     template: _.template($('#category-template').html()),
     render: function () {
-        console.log(this.model);
         this.$el.html(this.template(this.model.toJSON()));
         return this;
     }

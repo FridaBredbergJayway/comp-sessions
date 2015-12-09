@@ -21,8 +21,7 @@ views.InputView = Backbone.View.extend({
         $(".input").each(function() {
             map[$(this).attr("name")] = $(this).val();
         });
-        sessionList.create({title: map.inputTitle, category: map.inputCategory, organizer: map.inputOrganizer});
-        console.log(sessionList);
+        sessionList.add({title: map.inputTitle, category: map.inputCategory, organizer: map.inputOrganizer});
         this.clear();
     }
 });

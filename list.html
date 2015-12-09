@@ -29,7 +29,18 @@
         </div>
         <div class="col-sm-8 sessions">
             <h2>Sessions</h2>
-            <section id="list">
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Organizer</th>
+                    </tr>
+                    </thead>
+                    <tbody id="list">
+                    </tbody>
+                </table>
             </section>
             <section id="input">
             </section>
@@ -54,26 +65,14 @@
 </script>
 
 <script type="text/template" id="session-template">
-    <table>
-        <thead>
-        <tr>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Organizer</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
+
             <td><%= title %></td>
             <td><%= category %></td>
             <td><%= organizer %></td>
             <td>
                 <button>Sign Up</button>
             </td>
-        </tr>
 
-        </tbody>
-    </table>
 </script>
 
 <script type="text/template" id="input-template">

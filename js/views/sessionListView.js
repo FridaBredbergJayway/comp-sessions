@@ -9,18 +9,16 @@ views.SessionListView = Backbone.View.extend({
                 console.log('fetch done ', self.collection);
             }
         });
+        this.render();
     },
     render: function () {
         var self = this;
         this.$el.empty();
-        console.log(this.collection);
-        console.log('sessionlistview: ', this.collection);
         this.collection.each(function(model){
-            console.log(model);
-            var view = new views.SessionView();
+            var view = new views.SessionView({model: model});
             self.$el.append(view.render().el);
         });
-            return this;
+        return this;
     }
 });
 

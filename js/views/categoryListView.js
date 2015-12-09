@@ -14,13 +14,13 @@ views.CategoryListView = Backbone.View.extend({
                 console.log('fetch done ', self.collection);
             }
         });
+        this.render();
     },
     render: function () {
         var self = this;
-        console.log(this.collection);
+        this.$el.empty();
         this.collection.each(function(model){
-            console.log(model);
-            var view = new views.CategoryView();
+            var view = new views.CategoryView({model: model});
             self.$el.append(view.render().el);
         });
         return this;
