@@ -3,7 +3,6 @@
  */
 
 views.CategoryView = Backbone.View.extend({
-    model: models.Category,
     el: '.cat-item',
     template: _.template($('#category-template').html()),
     initialize: function () {

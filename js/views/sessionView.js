@@ -2,15 +2,14 @@
  * Created by frida on 11/27/15.
  */
 views.SessionView = Backbone.View.extend({
+    template: _.template($('#session-template').html()),
     initialize: function () {
-        //this.model.bind('change', this.render);
         this.render();
     },
     render: function () {
-        var template = _.template($('#session-template').html());
-        console.log(template);
+        console.log(this.template);
         console.log('sessionView ', JSON.stringify(this.model));
-        this.$el.html(template(this.model.toJSON()));
+        this.$el.html(this.template(this.model.toJSON()));
         return this;
     }
 });
