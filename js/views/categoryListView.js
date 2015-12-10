@@ -38,7 +38,7 @@ views.CategoryListView = Backbone.View.extend({
             for (var j = 0; j < sessions.length; j += 1) {
                 var model = sessions[j];
                 console.log(model);
-                model.set('selected', true);
+                model.set('selected', !model.get('selected'));
             }
         }
     }
