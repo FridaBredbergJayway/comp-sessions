@@ -7,7 +7,8 @@ models.Session = Backbone.Model.extend({
     defaults: {
         title: '',
         category: '',
-        organizer: ''
+        organizer: '',
+        selected: false
     }
 });
 

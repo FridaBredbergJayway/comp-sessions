@@ -26,6 +26,20 @@ views.CategoryListView = Backbone.View.extend({
     },
     filter: function() {
         console.log('changed mark');
+        var markedCategories = this.collection.where({marked: true});
+        if(markedCategories.length === 0) { 
+            this.render();
+         } else this.showFiltered(markedCategories);
+    },
+    showFiltered: function(array) {
+        for (var i = 0; i < array.length; i += 1) {
+            var category = array[i].get('category');
+            var sessions = sessionList.where({category: category});
+            for(var j = 0; j < sessions.length; j += 1) {
+                sessions[j].set('selected', true);
+            }
+            console.log(sessionList);
+        }
     }
 });
 
