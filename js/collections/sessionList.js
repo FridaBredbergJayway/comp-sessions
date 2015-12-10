@@ -9,4 +9,3 @@ collections.SessionList = Backbone.Collection.extend({
 });
 
 var sessionList = new collections.SessionList([session1, session2, session3, session4]);
-
