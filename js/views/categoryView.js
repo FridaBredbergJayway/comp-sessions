@@ -13,8 +13,7 @@ views.CategoryView = Backbone.View.extend({
     },
     mark: function(e) {
         this.model.set({marked: !this.model.get('marked')});
-        var mark = $(e.target).siblings('.glyphicon').hasClass('hide');
-        if(mark) {
+        if(this.model.get('marked')) {
             $(e.target).siblings('.glyphicon').removeClass('hide');
         } else $(e.target).siblings('.glyphicon').addClass('hide');
     }
