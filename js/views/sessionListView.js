@@ -23,10 +23,12 @@ views.SessionListView = Backbone.View.extend({
     },
 
     filter: function() {
-       console.log('filter');
+       var selectedSessions = sessionList.where({'selected': true});
+        if(selectedSessions.length !== 0) {
+            //this.render(selectedSessions);
+            console.log(selectedSessions);
+        } else this.render();
     }
-
-
 });
 
 var sessionListView = new views.SessionListView({collection: sessionList});
