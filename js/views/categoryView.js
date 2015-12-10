@@ -11,9 +11,12 @@ views.CategoryView = Backbone.View.extend({
     events: {
         'click strong' : 'mark'
     },
-    mark: function() {
+    mark: function(e) {
         this.model.set({marked: !this.model.get('marked')});
-        console.log(this.model);
+        var mark = $(e.target).siblings('.glyphicon').hasClass('hide');
+        if(mark) {
+            $(e.target).siblings('.glyphicon').removeClass('hide');
+        } else $(e.target).siblings('.glyphicon').addClass('hide');
     }
 });
 var categoryView = new views.CategoryView();

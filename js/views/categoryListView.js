@@ -6,7 +6,8 @@ views.CategoryListView = Backbone.View.extend({
     el: '#category-list',
     initialize: function() {
         var self = this;
-        this.collection.on('add change:marked', this.render, this);
+        this.collection.on('add', this.render, this);
+        this.collection.on('change:marked', this.changeMarked, this);
         this.collection.fetch({
             success: function() {
                 console.log('fetch done ', self.collection);
@@ -22,6 +23,9 @@ views.CategoryListView = Backbone.View.extend({
             self.$el.append(view.render().el);
         });
         return this;
+    },
+    changeMarked: function() {
+        console.log('change mark');
     }
 });
 
