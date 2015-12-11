@@ -16,4 +16,3 @@ views.CategoryView = Backbone.View.extend({
             $(e.target).siblings('.glyphicon').toggleClass('hide');
     }
 });
-var categoryView = new views.CategoryView();

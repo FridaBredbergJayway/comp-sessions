@@ -9,4 +9,3 @@ views.SessionView = Backbone.View.extend({
         return this;
     }
 });
-var sessionView = new views.SessionView();

@@ -26,5 +26,4 @@ views.InputView = Backbone.View.extend({
     }
 });
 
-inputView = new views.InputView();
 

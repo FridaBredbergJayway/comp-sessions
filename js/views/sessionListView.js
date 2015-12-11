@@ -31,5 +31,4 @@ views.SessionListView = Backbone.View.extend({
     }
 });
 
-var sessionListView = new views.SessionListView({collection: sessionList});
-Backbone.history.start();
+

@@ -22,5 +22,4 @@ views.CategoryInputView = Backbone.View.extend({
         this.clear();
     }
 });
-categoryInputView = new views.CategoryInputView({model: categoryList});
 

@@ -18,23 +18,22 @@ views.CategoryListView = Backbone.View.extend({
     render: function () {
         var self = this;
         this.$el.empty();
-        this.collection.each(function (model) {
+        var uniqueCategories = _.uniq(this.collection.pluck('category'));
+        _.each(uniqueCategories, function(element) {
+            var item = self.collection.findWhere({category: element});
+            sessionListFiltered.add(item);
+        });
+        console.log(sessionListFiltered);
+        sessionListFiltered.forEach(function (model) {
             var view = new views.CategoryView({model: model});
             self.$el.append(view.render().el);
         });
         return this;
     },
     select: function () {
-        var markedCategories = this.collection.where({marked: true});
-        console.log(markedCategories);
-        if (markedCategories.length === 0) {
-            console.log('rerender');
-            this.render();
-        } else {
-            console.log('inte tomt');
-        }
+        console.log(this.model);
+
     }
 });
 
-var categoryListView = new views.CategoryListView({collection: categoryList});
 
